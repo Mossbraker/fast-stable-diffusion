@@ -1,8 +1,16 @@
-import argparse
 import os
 import sys
-from modules.paths_internal import models_path, script_path, data_path, extensions_dir, extensions_builtin_dir
-import modules.safe
+import modules.paths_internal
+
+data_path = modules.paths_internal.data_path
+script_path = modules.paths_internal.script_path
+models_path = modules.paths_internal.models_path
+sd_configs_path = modules.paths_internal.sd_configs_path
+sd_default_config = modules.paths_internal.sd_default_config
+sd_model_file = modules.paths_internal.sd_model_file
+default_sd_model_file = modules.paths_internal.default_sd_model_file
+extensions_dir = modules.paths_internal.extensions_dir
+extensions_builtin_dir = modules.paths_internal.extensions_builtin_dir
 
 # data_path = cmd_opts_pre.data
 sys.path.insert(0, script_path)
@@ -19,10 +27,10 @@ assert sd_path is not None, "Couldn't find Stable Diffusion in any of: " + str(p
 
 path_dirs = [
     (sd_path, 'ldm', 'Stable Diffusion', []),
-    (os.path.join(sd_path, 'src/taming-transformers'), 'taming', 'Taming Transformers', []),
-    (os.path.join(sd_path, 'src/codeformer'), 'inference_codeformer.py', 'CodeFormer', []),
-    (os.path.join(sd_path, 'src/blip'), 'models/blip.py', 'BLIP', []),
-    (os.path.join(sd_path, 'src/k-diffusion'), 'k_diffusion/sampling.py', 'k_diffusion', ["atstart"]),
+    (os.path.join(sd_path, '../taming-transformers'), 'taming', 'Taming Transformers', []),
+    (os.path.join(sd_path, '../CodeFormer'), 'inference_codeformer.py', 'CodeFormer', []),
+    (os.path.join(sd_path, '../BLIP'), 'models/blip.py', 'BLIP', []),
+    (os.path.join(sd_path, '../k-diffusion'), 'k_diffusion/sampling.py', 'k_diffusion', ["atstart"]),
 ]
 
 paths = {}
@@ -33,12 +41,14 @@ for d, must_exist, what, options in path_dirs:
         print(f"Warning: {what} not found at path {must_exist_path}", file=sys.stderr)
     else:
         d = os.path.abspath(d)
-        if "atstart" in options:
-            sys.path.insert(0, d)
-        else:
-            sys.path.append(d)
+        # if "atstart" in options:
+        #    sys.path.insert(0, d)
+        # else:
+        #    sys.path.append(d)
+        sys.path.append(d)
         paths[what] = d
-        
+
+
 class Prioritize:
     def __init__(self, name):
         self.name = name
@@ -50,4 +60,4 @@ class Prioritize:
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         sys.path = self.path
-        self.path = None        
+        self.path = None
