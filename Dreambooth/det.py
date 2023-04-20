@@ -14,7 +14,7 @@ parser.add_argument("--MODEL_PATH", type=str)
 parser.add_argument("--from_safetensors", action='store_true')
 args = parser.parse_args()
 
-wget.download("https://github.com/TheLastBen/fast-stable-diffusion/raw/main/Dreambooth/ldm.zip")
+wget.download("https://github.com/Mossbraker/fast-stable-diffusion/raw/main/Dreambooth/ldm.zip")
 call('unzip ldm', shell=True, stdout=open('/dev/null', 'w'), stderr=open('/dev/null', 'w'))
 call('rm ldm.zip', shell=True, stdout=open('/dev/null', 'w'), stderr=open('/dev/null', 'w'))
 
