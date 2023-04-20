@@ -27,10 +27,10 @@ assert sd_path is not None, "Couldn't find Stable Diffusion in any of: " + str(p
 
 path_dirs = [
     (sd_path, 'ldm', 'Stable Diffusion', []),
-    (os.path.join(sd_path, '../taming-transformers'), 'taming', 'Taming Transformers', []),
-    (os.path.join(sd_path, '../CodeFormer'), 'inference_codeformer.py', 'CodeFormer', []),
-    (os.path.join(sd_path, '../BLIP'), 'models/blip.py', 'BLIP', []),
-    (os.path.join(sd_path, '../k-diffusion'), 'k_diffusion/sampling.py', 'k_diffusion', ["atstart"]),
+    (os.path.join(sd_path, 'src/taming-transformers'), 'taming', 'Taming Transformers', []),
+    (os.path.join(sd_path, 'src/CodeFormer'), 'inference_codeformer.py', 'CodeFormer', []),
+    (os.path.join(sd_path, 'src/BLIP'), 'models/blip.py', 'BLIP', []),
+    (os.path.join(sd_path, 'src/k-diffusion'), 'k_diffusion/sampling.py', 'k_diffusion', ["atstart"]),
 ]
 
 paths = {}
